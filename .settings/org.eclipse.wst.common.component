@@ -5,4 +5,16 @@
         <property name="context-root" value="KARAKURIproject"/>
         <property name="java-output-path" value="/KARAKURIproject/build/classes"/>
     </wb-module>
+        
+    <wb-module deploy-name="Karakuri">
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/" source-path="/src/others/webapp"/>
+                
+        <property name="context-root" value="Karakuri"/>
+                
+        <property name="java-output-path" value="/Karakuri/build/classes"/>
+            
+    </wb-module>
+    
 </project-modules>
