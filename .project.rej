@@ -1,0 +1,9 @@
+diff a/.project b/.project	(rejected hunks)
+@@ -4,6 +4,7 @@
+ +	<name>KARAKURIproject</name>
+ +=======
+  	<name>Karakuri</name>
+++>>>>>>> 51e82d0 (更新)
+  	<comment></comment>
+  	<projects>
+  	</projects>
