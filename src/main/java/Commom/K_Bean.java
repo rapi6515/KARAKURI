@@ -5,6 +5,7 @@ public class K_Bean {
 	private String staff_id = "";       //スタッフID
 	private String podition = "";       //役職
 	private String name = "";           //氏名
+	private String kana = "";           //氏名カナ
 	private String job_name = "";       //職種名
 	private String tel = "";            //電話番号
 	private String sex = "";            //性別
@@ -18,10 +19,12 @@ public class K_Bean {
 	private String reserve_comment = "";//予約コメント
 	private String plan_id = "";        //プランID
 	private String birth_day = "";      //生年月日
-	
-	
-	
-	
+	private String email = "";           //メアド
+	private String nationality = "";    //国籍
+	private String reason = "";         //予約のきっかけ
+	private String start_time = "";//予約検索時にフォームに入力した予約スタート時間（戸高）
+	private String end_time = ""; //予約検索時にフォームに入力した予約終了時間（戸高）
+	private String date = ""; //予約検索時にフォームに入力した日にち（戸高）
 	
 	
 	public String getStaff_id() {
@@ -119,6 +122,90 @@ public class K_Bean {
 	}
 	public void setBirth_day(String birth_day) {
 		this.birth_day = birth_day;
+	}
+	/**
+	 * @return kana
+	 */
+	public String getKana() {
+		return kana;
+	}
+	/**
+	 * @param kana セットする kana
+	 */
+	public void setKana(String kana) {
+		this.kana = kana;
+	}
+	/**
+	 * @return email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	/**
+	 * @param email セットする email
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	/**
+	 * @return nationality
+	 */
+	public String getNationality() {
+		return nationality;
+	}
+	/**
+	 * @param nationality セットする nationality
+	 */
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+	/**
+	 * @return reason
+	 */
+	public String getReason() {
+		return reason;
+	}
+	/**
+	 * @param reason セットする reason
+	 */
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+	/**
+	 * @return start_time
+	 */
+	public String getStart_time() {
+		return start_time;
+	}
+	/**
+	 * @param start_time セットする start_time
+	 */
+	public void setStart_time(String start_time) {
+		this.start_time = start_time;
+	}
+	/**
+	 * @return end_time
+	 */
+	public String getEnd_time() {
+		return end_time;
+	}
+	/**
+	 * @param end_time セットする end_time
+	 */
+	public void setEnd_time(String end_time) {
+		this.end_time = end_time;
+	}
+	/**
+	 * @return date
+	 */
+	public String getDate() {
+		return date;
+	}
+	/**
+	 * @param date セットする date
+	 */
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	

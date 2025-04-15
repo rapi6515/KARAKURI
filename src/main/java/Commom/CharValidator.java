@@ -52,7 +52,7 @@ public class CharValidator {
 			return false;
 		}
 		// 半角文字判定
-		Pattern p = Pattern.compile("/p{HalfWidth}"); //空文字をNGとしたい場合
+		Pattern p = Pattern.compile("^[\u30a0-\u30ff]$"); //空文字をNGとしたい場合
 		//Pattern p = Pattern.compile("^[\u30a0-\u30ff]*$"); 	//空文字をOKとしたい場合
 		Matcher m = p.matcher(value);
 

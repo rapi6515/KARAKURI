@@ -17,7 +17,7 @@ public class K_DAO {
 
 	//プロパティファイル取得
 	ResourceBundle bundle =
-	ResourceBundle.getBundle("Demo");
+	ResourceBundle.getBundle("K");
 	//定数DB-URL
 	private final String DB_URL = bundle.getString("dbURL");
 	private final String DB_USER = bundle.getString("dbUSER");
@@ -147,7 +147,7 @@ public class K_DAO {
 
 			// クエリを準備します。
 			prestatement = connection.prepareStatement(query);
-
+			                          
 			// バッチに追加
 			for (Map<Integer, Object> paramMap : mapList) {
 				setParameters(prestatement, paramMap);
