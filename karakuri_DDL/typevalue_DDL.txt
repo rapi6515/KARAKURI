@@ -1,0 +1,98 @@
+--------------------------------------------------------------------------------
+-- academy.typevalue のレイアウト変更
+--   注意！！：テーブルに依存するオブジェクト（ビューなど）が削除される場合があります。それらのオブジェクトは復元されません。
+--   2025/04/16 Kunre
+--------------------------------------------------------------------------------
+
+
+-- 新テーブルの作成
+create table academy."$$typevalue" (
+  key character varying(10) not null
+  , seq numeric(3) not null
+  , textvalue character varying(20)
+  , numvalue numeric(10)
+  , remarks character varying(20)
+  , comment character varying(40)
+  , modifydate timestamp(6) with time zone default now()
+  , modify numeric(3) default 0
+)
+/
+
+
+-- 新テーブルへデータ投入
+insert into academy."$$typevalue"(key, seq, textvalue, numvalue, remarks, comment, modifydate, modify)
+  select org.key, org.seq, org.textvalue, org.numvalue, org.remarks, org.comment, org.modifydate, org.modify from academy.typevalue org
+/
+
+
+-- 元テーブルの削除
+drop table academy.typevalue cascade
+/
+
+
+-- 新テーブルをリネームして元テーブル名に変更
+alter table academy."$$typevalue" rename to typevalue
+/
+
+
+-- インデックスとユニーク制約の作成
+create index typevalue_fk1 on academy.typevalue(key,comment)
+/
+
+
+-- 主キーの作成
+alter table academy.typevalue  add constraint typevalue_pky primary key (key,seq)
+/
+
+
+-- コメントの作成
+comment on table academy.typevalue is '汎用値'
+/
+
+comment on column academy.typevalue.key is '汎用キー'
+/
+
+comment on column academy.typevalue.seq is '識別'
+/
+
+comment on column academy.typevalue.textvalue is 'テキスト値'
+/
+
+comment on column academy.typevalue.numvalue is '数値'
+/
+
+comment on column academy.typevalue.remarks is '備考'
+/
+
+comment on column academy.typevalue.comment is 'コメント'
+/
+
+comment on column academy.typevalue.modifydate is '更新日'
+/
+
+comment on column academy.typevalue.modify is '更新数'
+/
+
+
+-- その他のDDL
+grant DELETE on academy.typevalue to "academy"
+/
+
+grant INSERT on academy.typevalue to "academy"
+/
+
+grant REFERENCES on academy.typevalue to "academy"
+/
+
+grant SELECT on academy.typevalue to "academy"
+/
+
+grant TRIGGER on academy.typevalue to "academy"
+/
+
+grant TRUNCATE on academy.typevalue to "academy"
+/
+
+grant UPDATE on academy.typevalue to "academy"
+/
+

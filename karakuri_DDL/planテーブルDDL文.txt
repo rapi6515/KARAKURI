@@ -1,0 +1,121 @@
+--------------------------------------------------------------------------------
+-- academy.plan のレイアウト変更
+--   注意！！：テーブルに依存するオブジェクト（ビューなど）が削除される場合があります。それらのオブジェクトは復元されません。
+--   2025/04/15 kunre
+--------------------------------------------------------------------------------
+
+
+-- 新テーブルの作成
+create table academy."$$plan" (
+  plan_id numeric(4) not null
+  , plan_name character varying(50)
+  , image text
+  , stock numeric(3)
+  , cost numeric(5)
+  , subplan character varying(50)
+  , contents text
+  , time_required time without time zone
+  , plan_required time without time zone
+  , periodstart date
+  , periodend date
+  , staff_memo text
+  , job_id1 character varying(4)
+  , job_id2 character varying(4)
+  , job_id3 character varying(4)
+)
+/
+
+
+-- 新テーブルへデータ投入
+insert into academy."$$plan"(plan_id, plan_name, image, stock, cost, subplan, contents, time_required, plan_required, periodstart, periodend, staff_memo, job_id1, job_id2, job_id3)
+  select org.plan_id, org.plan_name, org.image, org.stock, org.cost, org.subplan, org.contents, org.time_required, org.plan_required, org.periodstart, org.periodend, org.staff_memo, org.job_id1, org.job_id2, org.job_id3 from academy.plan org
+/
+
+
+-- 元テーブルの削除
+drop table academy.plan cascade
+/
+
+
+-- 新テーブルをリネームして元テーブル名に変更
+alter table academy."$$plan" rename to plan
+/
+
+
+-- 主キーの作成
+alter table academy.plan  add constraint plan_pky primary key (plan_id)
+/
+
+
+-- コメントの作成
+comment on table academy.plan is 'プラン内容'
+/
+
+comment on column academy.plan.plan_id is 'プランID'
+/
+
+comment on column academy.plan.plan_name is 'プラン名'
+/
+
+comment on column academy.plan.image is '画像'
+/
+
+comment on column academy.plan.stock is '在庫'
+/
+
+comment on column academy.plan.cost is '単価'
+/
+
+comment on column academy.plan.subplan is 'サブプラン名'
+/
+
+comment on column academy.plan.contents is '概要'
+/
+
+comment on column academy.plan.time_required is '正味所要'
+/
+
+comment on column academy.plan.plan_required is 'プラン所要'
+/
+
+comment on column academy.plan.periodstart is '開始日'
+/
+
+comment on column academy.plan.periodend is '終了日'
+/
+
+comment on column academy.plan.staff_memo is 'スタッフメモ'
+/
+
+comment on column academy.plan.job_id1 is '職種ID1'
+/
+
+comment on column academy.plan.job_id2 is '職種ID2'
+/
+
+comment on column academy.plan.job_id3 is '職種ID3'
+/
+
+
+-- その他のDDL
+grant DELETE on academy.plan to "academy"
+/
+
+grant INSERT on academy.plan to "academy"
+/
+
+grant REFERENCES on academy.plan to "academy"
+/
+
+grant SELECT on academy.plan to "academy"
+/
+
+grant TRIGGER on academy.plan to "academy"
+/
+
+grant TRUNCATE on academy.plan to "academy"
+/
+
+grant UPDATE on academy.plan to "academy"
+/
+

@@ -1,0 +1,124 @@
+--------------------------------------------------------------------------------
+-- academy.reserve のレイアウト変更
+--   注意！！：テーブルに依存するオブジェクト（ビューなど）が削除される場合があります。それらのオブジェクトは復元されません。
+--   2025/04/16 kunre
+--------------------------------------------------------------------------------
+
+
+-- 新テーブルの作成
+create table academy."$$reserve" (
+  reserve_num serial not null
+  , reserve_day date
+  , reserve_time time without time zone
+  , reserve_comment text
+  , reserve_kana character varying(20)
+  , reserve_cost numeric(7)
+  , reserve_name character varying(10)
+  , reserve_tel character varying(15)
+  , reserve_email character varying(50)
+  , reserve_nationality character varying(100)
+  , reserve_media character varying(15)
+  , plan_id numeric(4)
+  , createdby character varying(10)
+  , createddate date
+  , updatedby character varying(10)
+  , updateddate date
+)
+/
+
+
+-- 新テーブルへデータ投入
+insert into academy."$$reserve"(reserve_num, reserve_day, reserve_time, reserve_comment, reserve_kana, reserve_cost, reserve_name, reserve_tel, reserve_email, reserve_nationality, reserve_media, plan_id, createdby, createddate, updatedby, updateddate)
+  select org.reserve_num, org.reserve_day, org.reserve_time, org.reserve_comment, org.reserve_kana, org.reserve_cost, org.reserve_name, org.reserve_tel, org.reserve_email, org.reserve_nationality, org.reserve_media, org.plan_id, org.createdby, org.createddate, org.updatedby, org.updateddate from academy.reserve org
+/
+
+
+-- 元テーブルの削除
+drop table academy.reserve cascade
+/
+
+
+-- 新テーブルをリネームして元テーブル名に変更
+alter table academy."$$reserve" rename to reserve
+/
+
+
+-- 主キーの作成
+alter table academy.reserve  add constraint reserve_pkey primary key (reserve_num)
+/
+
+
+-- コメントの作成
+comment on table academy.reserve is '予約'
+/
+
+comment on column academy.reserve.reserve_num is '予約番号'
+/
+
+comment on column academy.reserve.reserve_day is '予約日付'
+/
+
+comment on column academy.reserve.reserve_time is '予約時間'
+/
+
+comment on column academy.reserve.reserve_comment is '予約コメント'
+/
+
+comment on column academy.reserve.reserve_kana is '予約者カナ'
+/
+
+comment on column academy.reserve.reserve_cost is '予約料金'
+/
+
+comment on column academy.reserve.reserve_name is '予約者名'
+/
+
+comment on column academy.reserve.reserve_tel is '予約者電話番号'
+/
+
+comment on column academy.reserve.reserve_email is '予約者E-mail'
+/
+
+comment on column academy.reserve.reserve_nationality is '予約者国籍'
+/
+
+comment on column academy.reserve.reserve_media is '予約媒体'
+/
+
+comment on column academy.reserve.plan_id is 'プランID'
+/
+
+comment on column academy.reserve.createdby is '作成者'
+/
+
+comment on column academy.reserve.createddate is '作成日'
+/
+
+comment on column academy.reserve.updatedby is '更新者'
+/
+
+comment on column academy.reserve.updateddate is '更新日'
+/
+
+
+-- その他のDDL
+grant DELETE on academy.reserve to "academy"
+/
+
+grant INSERT on academy.reserve to "academy"
+/
+
+grant REFERENCES on academy.reserve to "academy"
+/
+
+grant SELECT on academy.reserve to "academy"
+/
+
+grant TRIGGER on academy.reserve to "academy"
+/
+
+grant TRUNCATE on academy.reserve to "academy"
+/
+
+grant UPDATE on academy.reserve to "academy"
+/
