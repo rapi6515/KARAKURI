@@ -1,0 +1,101 @@
+--------------------------------------------------------------------------------
+-- academy.plan_stock のレイアウト変更
+--   注意！！：テーブルに依存するオブジェクト（ビューなど）が削除される場合があります。それらのオブジェクトは復元されません。
+--   2025/04/16 kunre
+--------------------------------------------------------------------------------
+
+
+-- 新テーブルの作成
+create table academy."$$plan_stock" (
+  image character varying(50)
+  , plan_id numeric(4) not null
+  , reserve_day date not null
+  , reserve_start_time time without time zone not null
+  , reserve_end_time time without time zone not null
+  , available_count smallint not null
+  , createdby character varying(10)
+  , createddate date
+  , updatedby character varying(10)
+  , updateddate date
+)
+/
+
+
+-- 新テーブルへデータ投入
+insert into academy."$$plan_stock"(image, plan_id, reserve_day, reserve_start_time, reserve_end_time, available_count, createdby, createddate, updatedby, updateddate)
+  select org.image, org.plan_id, org.reserve_day, org.reserve_start_time, org.reserve_end_time, org.available_count, org.createdby, org.createddate, org.updatedby, org.updateddate from academy.plan_stock org
+/
+
+
+-- 元テーブルの削除
+drop table academy.plan_stock cascade
+/
+
+
+-- 新テーブルをリネームして元テーブル名に変更
+alter table academy."$$plan_stock" rename to plan_stock
+/
+
+
+-- 主キーの作成
+alter table academy.plan_stock  add constraint plan_stock_pkey primary key (plan_id,reserve_day,reserve_start_time,reserve_end_time)
+/
+
+
+-- コメントの作成
+comment on table academy.plan_stock is '予約在庫管理'
+/
+
+comment on column academy.plan_stock.image is '画像'
+/
+
+comment on column academy.plan_stock.plan_id is 'プランID'
+/
+
+comment on column academy.plan_stock.reserve_day is '予約日付'
+/
+
+comment on column academy.plan_stock.reserve_start_time is '予約開始時間'
+/
+
+comment on column academy.plan_stock.reserve_end_time is '予約終了時間'
+/
+
+comment on column academy.plan_stock.available_count is '予約可能残数'
+/
+
+comment on column academy.plan_stock.createdby is '作成者'
+/
+
+comment on column academy.plan_stock.createddate is '作成日'
+/
+
+comment on column academy.plan_stock.updatedby is '更新者'
+/
+
+comment on column academy.plan_stock.updateddate is '更新者'
+/
+
+
+-- その他のDDL
+grant DELETE on academy.plan_stock to "academy"
+/
+
+grant INSERT on academy.plan_stock to "academy"
+/
+
+grant REFERENCES on academy.plan_stock to "academy"
+/
+
+grant SELECT on academy.plan_stock to "academy"
+/
+
+grant TRIGGER on academy.plan_stock to "academy"
+/
+
+grant TRUNCATE on academy.plan_stock to "academy"
+/
+
+grant UPDATE on academy.plan_stock to "academy"
+/
+
