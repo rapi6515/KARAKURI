@@ -1,0 +1,116 @@
+--------------------------------------------------------------------------------
+-- academy.staff のレイアウト変更
+--   注意！！：テーブルに依存するオブジェクト（ビューなど）が削除される場合があります。それらのオブジェクトは復元されません。
+--   2025/04/16 Kunre
+--------------------------------------------------------------------------------
+
+
+-- 新テーブルの作成
+create table academy."$$staff" (
+  job_id numeric(5) not null
+  , birth_day date not null
+  , staff_id numeric(4) not null
+  , name character varying(10) not null
+  , sex numeric(1) not null
+  , podition numeric(5) not null
+  , address character varying(30) not null
+  , residence character varying(20)
+  , tel character varying(15) not null
+  , avatar character varying(50)
+  , rank_id numeric(2) not null
+  , createdby character varying(10)
+  , createddate date
+  , updatedby character varying(10)
+  , updateddate date
+)
+/
+
+
+-- 新テーブルへデータ投入
+insert into academy."$$staff"(job_id, birth_day, staff_id, name, sex, podition, address, residence, tel, avatar, rank_id, createdby, createddate, updatedby, updateddate)
+  select org.job_id, org.birth_day, org.staff_id, org.name, org.sex, org.podition, org.address, org.residence, org.tel, org.avatar, org.rank_id, org.createdby, org.createddate, org.updatedby, org.updateddate from academy.staff org
+/
+
+
+-- 元テーブルの削除
+drop table academy.staff cascade
+/
+
+
+-- 新テーブルをリネームして元テーブル名に変更
+alter table academy."$$staff" rename to staff
+/
+
+
+-- コメントの作成
+comment on table academy.staff is 'スタッフ'
+/
+
+comment on column academy.staff.job_id is '職種ID'
+/
+
+comment on column academy.staff.birth_day is '生年月日'
+/
+
+comment on column academy.staff.staff_id is 'スタッフID'
+/
+
+comment on column academy.staff.name is '氏名'
+/
+
+comment on column academy.staff.sex is '性別'
+/
+
+comment on column academy.staff.podition is '役職'
+/
+
+comment on column academy.staff.address is '住所'
+/
+
+comment on column academy.staff.residence is '住所表示'
+/
+
+comment on column academy.staff.tel is '電話番号'
+/
+
+comment on column academy.staff.avatar is 'アバター'
+/
+
+comment on column academy.staff.rank_id is '権限ID'
+/
+
+comment on column academy.staff.createdby is '作成者'
+/
+
+comment on column academy.staff.createddate is '作成日'
+/
+
+comment on column academy.staff.updatedby is '更新者'
+/
+
+comment on column academy.staff.updateddate is '更新日'
+/
+
+
+-- その他のDDL
+grant DELETE on academy.staff to "academy"
+/
+
+grant INSERT on academy.staff to "academy"
+/
+
+grant REFERENCES on academy.staff to "academy"
+/
+
+grant SELECT on academy.staff to "academy"
+/
+
+grant TRIGGER on academy.staff to "academy"
+/
+
+grant TRUNCATE on academy.staff to "academy"
+/
+
+grant UPDATE on academy.staff to "academy"
+/
+
