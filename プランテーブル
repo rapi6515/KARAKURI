@@ -1,0 +1,117 @@
+--------------------------------------------------------------------------------
+-- academy.plan のレイアウト変更
+--   注意！！：テーブルに依存するオブジェクト（ビューなど）が削除される場合があります。それらのオブジェクトは復元されません。
+--   2025/04/16 kunre
+--------------------------------------------------------------------------------
+
+
+-- 新テーブルの作成
+create table academy."$$plan" (
+  plan_id numeric(4) not null
+  , plan_name character varying(50)
+  , stock numeric(3)
+  , cost numeric(5)
+  , subplan character varying(50)
+  , contents text
+  , time_required time without time zone
+  , plan_required time without time zone
+  , period date
+  , staff_memo text
+  , createdby character varying(10)
+  , createddate date
+  , updatedby character varying(10)
+  , updateddate date
+)
+/
+
+
+-- 新テーブルへデータ投入
+insert into academy."$$plan"(plan_id, plan_name, stock, cost, subplan, contents, time_required, plan_required, period, staff_memo, createdby, createddate, updatedby, updateddate)
+  select org.plan_id, org.plan_name, org.stock, org.cost, org.subplan, org.contents, org.time_required, org.plan_required, org.period, org.staff_memo, org.createdby, org.createddate, org.updatedby, org.updateddate from academy.plan org
+/
+
+
+-- 元テーブルの削除
+drop table academy.plan cascade
+/
+
+
+-- 新テーブルをリネームして元テーブル名に変更
+alter table academy."$$plan" rename to plan
+/
+
+
+-- 主キーの作成
+alter table academy.plan  add constraint plan_pky primary key (plan_id)
+/
+
+
+-- コメントの作成
+comment on table academy.plan is 'プラン内容'
+/
+
+comment on column academy.plan.plan_id is 'プランID'
+/
+
+comment on column academy.plan.plan_name is 'プラン名'
+/
+
+comment on column academy.plan.stock is '在庫'
+/
+
+comment on column academy.plan.cost is '単価'
+/
+
+comment on column academy.plan.subplan is 'サブプラン名'
+/
+
+comment on column academy.plan.contents is '概要'
+/
+
+comment on column academy.plan.time_required is '正味所要'
+/
+
+comment on column academy.plan.plan_required is 'プラン所要'
+/
+
+comment on column academy.plan.period is '開催期間'
+/
+
+comment on column academy.plan.staff_memo is 'スタッフメモ'
+/
+
+comment on column academy.plan.createdby is '作成者'
+/
+
+comment on column academy.plan.createddate is '作成日'
+/
+
+comment on column academy.plan.updatedby is '更新者'
+/
+
+comment on column academy.plan.updateddate is '更新日'
+/
+
+
+-- その他のDDL
+grant DELETE on academy.plan to "academy"
+/
+
+grant INSERT on academy.plan to "academy"
+/
+
+grant REFERENCES on academy.plan to "academy"
+/
+
+grant SELECT on academy.plan to "academy"
+/
+
+grant TRIGGER on academy.plan to "academy"
+/
+
+grant TRUNCATE on academy.plan to "academy"
+/
+
+grant UPDATE on academy.plan to "academy"
+/
+
