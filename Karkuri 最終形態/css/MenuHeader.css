@@ -1,0 +1,209 @@
+@charset "UTF-8";
+
+
+.content-wrapper {
+    margin-top: 56px; /* ヘッダーの高さ */
+    /* または */
+    padding-top: 56px;
+}
+
+/*メニューページのbodyスタイル */
+.menu-page {
+  background: linear-gradient(to bottom, #4E6D8C, #3b4d63); 
+  height: 100vh;
+  margin: 0;
+  color: white; /* デフォルトテキスト色 */
+
+}
+
+/* ヘッダーのスタイル調整 */
+.navbar {
+    display: flex !important; /* Flexbox を強制適用 */
+    justify-content: space-between !important; /* 要素間にスペースを配置 */
+    align-items: center !important; /* 垂直方向中央揃え */
+    position: fixed !important; /*ナビゲーションバーはビューポートに固定*/
+    top: 0 !important;       /*バーをビューポートの上端に配置*/
+    left: 0 !important;      /*バーをビューポートの左端に配置*/
+    width: 100% !important;  /*バーの幅をビューポートいっぱいに広げる*/
+    z-index: 1000 !important; /*バーを他の要素よりも前面に表示（重なり順を制御）*/
+    background-color: rgba(52, 73, 94, 0.8) !important; /* 少し透明感のある濃い青灰色 */
+    color: white !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+
+}
+
+.navbar-brand { /*Karakuri Systemの文字設定*/
+    color: white !important;
+    font-weight: bold;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+
+/* オフキャンバスメニュー */
+.offcanvas {
+    background-color:rgba(52, 73, 94, 0.9);/*オフキャンバスの背景色濃い青灰色*/
+    color: white;
+}
+
+.offcanvas-body { /*オフキャンバスとヘッダー下の間に余白*/
+    padding-top: 1rem;
+}
+
+
+.offcanvas-header .btn-close {/*メニューの閉じるボタン*/
+    background-color: white;/*背景色を白*/
+}
+
+
+.offcanvas-start {
+    width: 180px !important; /* オフキャンバスの幅を調整*/
+}
+
+
+
+.list-group-item-action {
+    background-color: transparent !important;  /*メニュー項目の背景色を透明*/
+    color: white !important; /*メニュー項目のテキストを白*/
+    border: none !important;  /*項目の枠線をなし*/
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important; /*メニュー項目の下に、薄い半透明の白い線（太さ 1px、実線、RGBAカラーで透明度 0.1）*/
+    padding: 15px 0 !important;/*項目の上下内側の余白を15px、左右の余白を0*/
+    margin-bottom: 5px; /*項目の下の外側の余白を 5px */
+    transition: background-color 0.3s ease; /*項目の背景色0.3秒かけて緩やかなアニメーション*/
+}
+
+.list-group-item-action:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important; /*ホバー時に項目の背景色を薄い半透明の白（RGBA カラーで透明度 0.1）に変化*/
+	transform: scale(1.05);    /* 少し大きく */
+}
+
+.menu-btn {
+    text-align: left;/* メニューボタン内のテキスト左寄せ*/
+    padding-left: 2rem;
+    font-size: 16px; /*ボタン内のテキストサイズ*/
+    font-weight: bold; /*太字*/
+    display: block; /*ボタンをブロック要素として表示*/
+    width: 100%; /* ボタンの幅を調整 */
+    margin: 0 auto 10px auto; /*ボタンの外側の余白、上0、左右をauto（中央揃え）、下10pxに指定*/
+}
+
+.menu-btn:hover { /*メニューボタン押した時*/
+    background-color: rgba(255, 255, 255, 0.95); /* ホバー時、少し明るく */
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ホバー時、少し強めの影 */
+}
+
+/* ユーザー情報表示部分 */
+.dropdown-toggle::after {
+    display: none !important; /* デフォルトのドロップダウン矢印を非表示 */
+}
+
+/* ドロップダウンの情報表示（名前や権限） */
+.dropdown-info-box {
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin: 5px 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 6px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.dropdown-info-btn {
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin: 5px 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 6px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.dropdown-item{
+	color: white;
+	font-weight: bold;
+	
+}
+
+#logout-form .dropdown-item {
+    background-color: transparent !important; /* ログアウトボタンのデフォルトを透明に */
+    
+}
+
+.dropdown-info-btn:hover{
+	background-color: rgba(255, 255, 255, 0.95); /* ホバー時、少し明るく */
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ホバー時、少し強めの影 */
+}
+
+
+.user-name-dropdown { /*ユーザー名押した時*/
+    display: inline-flex;
+    align-items: center;
+    gap: 4px; /* 名前とアイコンの間に少し余白 */
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+/*権限バッチ*/
+.dropdown-role-badge { 
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 0.5rem; 
+}
+
+.dropdown-menu{ /*ユーザーメニュー背景*/
+    background-color:rgba(52, 73, 94, 0.9);/*オフキャンバスの背景色濃い青灰色*/
+}
+
+.user-name-dropdown:hover {/*ユーザー名押した時*/
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.user-avatar { /*アバターアイコン表示調整*/
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.navbar .dropdown .btn-link {
+    padding-top: 0.25rem;  /*上側の内側の余白を0.25remに設定*/
+    padding-bottom: 0.25rem;  /*下側の内側の余白を0.25remに設定*/
+    align-items: center;
+    display: flex;
+}
+
+.navbar .dropdown .btn-link:hover {
+    opacity: 0.8; /* 例：マウスオーバー時に少し透明にする */
+    background-color: rgba(255, 255, 255, 0.1); /* ← ここ追加 */
+    border-radius: 8px; /* 丸みを少しつけて */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2); /* 浮かせる感じ */
+    transition: all 0.2s ease-in-out;
+}
+
+.greeting-two-line-small {
+    font-size: 0.8em;
+    line-height: 1.3;
+    margin-left: 0.75rem; /* アイコンとのスペース調整 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+

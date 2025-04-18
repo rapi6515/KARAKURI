@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+/*ログインページのbodyスタイル(全体の背景)*/
+.login-page {
+  background: linear-gradient(to bottom,  #4E6D8C,#34495e); /*上から下 (濃い青灰色→濃い青灰色) へグラデーション*/
+  min-height: 100vh; /* 最小の高さをビューポートに合わせる */
+  margin: 0; /* デフォルトのマージンを削除 */
+  display: flex; /* 中央寄せのための設定 */
+  justify-content: center;
+  align-items: flex-start; /* 垂直方向を上端に揃える */
+  padding-top: 20px; /* 上部に少し余白を追加して見切れを防ぐ */
+  
+}
+
+/*ログインボックス*/
+.login-box {
+  color: white;
+  padding: 40px; /*要素の境界線との間(上下左右に 40 ピクセルの内側の余白を設定)*/
+  border-radius: 10px; /*要素の角の丸み,半径を10 ピクセルに設定*/
+  width: 400px;  /*ログインボックスの横幅を400ピクセルに*/
+  margin: 50px auto 100px auto; /* 上 50px, 左右 auto, 下 100px */
+  text-align: center; /*ボックス内のテキストを中央揃え*/
+  
+}
+
+.login-box h2 {
+  margin-bottom: 30px; /*LOGINの下側の外側の余白*/
+  font-weight: bold; /*太字*/
+}
+
+/* ラベル */
+.form-label {
+  color: white; /* ラベルのテキストを白に */
+  display: block; /* ラベルを独立した行に */
+  text-align: left; /* 左寄せ */
+  margin-bottom: 5px;
+}
+
+/* 入力フィールド */
+.form-control{
+  background-color: rgba(255, 255, 255, 0.1); /* 半透明の白っぽい背景(赤、緑、青の値をそれぞれ255純粋な白色) */
+  color: white; /* 入力テキストを白に */
+  border: none; /* 枠線をなくす */
+  border-bottom: 1px solid #ccc; /* 下線 */
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px; /* 少し角丸 */
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: none; /* デフォルトでは影なし */
+}
+
+
+.form-control::placeholder { /* プレースホルダーのテキストの色 */
+  color: #ccc;/*薄いグレー*/
+}
+
+/* エラー時の入力フィールド */
+.form-control.error-input {
+  border: 1px solid #ff4d4d; /* 枠線の太さ、種類、色 */
+}
+
+/* ボタン */
+.btn-primary {
+  background: linear-gradient(to bottom, #4dabf5, #1e88e5); /* 上から下へ (明るい青→濃い青) グラデーション */
+  color: white; /* ボタンのテキストを白 */
+  border: none; /*ボタンの枠線なし*/
+  padding: 14px 30px; /* ボタンの内側の余白 (上下15px, 左右30px) */
+  border-radius: 5px; /* ボタンの角を少し丸く (半径5px) */
+  cursor: pointer;  /* マウスオーバー時にカーソルを指の形に */
+  font-size: 17px;  /* ボタンのテキストのフォントサイズ*/
+  font-weight: bold; /*太字*/
+  transition: background 0.3s ease; /* ホバーアニメーション */
+  width: 100%; /* 幅を親要素に合わせる */
+  margin-top: 10px; /* 上に 10px の外側の余白を追加*/
+}
+
+/*マウスがボタンに乗った時、上から下へグラデーション*/
+.btn-primary:hover {
+  background: linear-gradient(to bottom, #1e88e5, #4dabf5); /* ホバー時のグラデーション */
+}
+
+/* エラーメッセージ */
+.error-message {
+  color: #ff4d4d; /* 赤色 */
+  text-align: left;
+  margin-top: 5px; /*エラーメッセージ上側の外側の余白を5pxに*/
+  font-size: 0.9em; /*親要素のフォントサイズの 0.9 倍に設定*/
+  font-weight: bold; /*太字*/
+  
+  
+}
+
+.error-input {
+  border: 1px solid #ff4d4d; /*枠線の太さ、種類（実線）、色（赤）*/
+  animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both; /* shakeアニメーションを0.3秒かけて実行、easing関数で動きを調整 */
+}
+
+@keyframes shake {
+  10%, 90% {  /*アニメーションの10%と90%の時点で、要素を水平方向（X軸）に-1ピクセル移動*/
+    transform: translateX(-1px); 
+  }
+
+  20%, 80% {  /*アニメーションの20%と80%の時点で、要素を水平方向に2ピクセル移動*/
+    transform: translateX(2px);
+  }
+
+  30%, 50%, 70% { /*アニメーションの30%、50%、70%の時点で、要素を水平方向に-4ピクセル移動*/
+    transform: translateX(-4px);
+  }
+
+  40%, 60% { /*アニメーションの40%と60%の時点で、要素を水平方向に4ピクセル移動*/
+    transform: translateX(4px);
+  }
+}
+
+/* エラーメッセージ内のアイコン */
+.error-message i {
+  margin-right: 5px; /*右側の外側の余白5px*/
+  display: inline-block;
+  animation: bounce 0.5s ease alternate 2; /* bounce アニメーションを 0.5秒かけて実行、easing 関数と反復回数を2に設定 */
+  color: #ffff00; /* アイコンを黄色に */
+  margin-right: 5px; /* アイコンとテキストの間に少しスペース */
+}
+
+@keyframes bounce {
+  0% {  /*アニメーションの開始時点（0%）では、要素を垂直方向（Y軸）に移動させない*/
+    transform: translateY(0);
+  }
+  100% {  /*アニメーションの終了時点（100%）では、要素を垂直方向に -3 ピクセル移動*/
+    transform: translateY(-3px); /* 少し上に跳ね上がる */
+  }
+}
+
+
+.error-container {
+    background-color:white; /* 背景 */
+    border: 1.3px solid #FF9900; /* 濃いオレンジ色の枠線 */
+    padding: 15px; /*コンテンツと枠線の間の余白*/
+    margin-bottom: 1px; /* ログインフォームとの間隔 */
+    border-radius: 5px; /* 角を丸くする */
+    margin-top: 5px; /*要素の上側の外側余白*/
+    position: relative; /*要素の配置方法を相対配置に設定*/
+    top: 10px; /*相対配置された要素を、通常の配置位置から下方向に 10 ピクセル移動*/
+    width: 80%; /* 親要素の 80% の幅にする例 */
+    max-width: 400px; /* 最大幅を 400px に制限する例 */
+    margin-left: auto; /* 左右のマージンを auto にして中央寄せにする */
+    margin-right: auto; /* 左右のマージンを auto にして中央寄せにする */
+}
+
+.error-header {
+    display: flex;
+    align-items: center; /*アイコンとタイトルが垂直方向の中央で揃う*/
+    margin-bottom: 10px; /*ヘッダーと本文の間にスペース*/
+}
+
+.error-icon {
+    color: #f44336; /* アイコンの色を赤色 */
+    font-size: 1.5em; /*アイコンのフォントサイズを親要素のフォントサイズの 1.5 倍*/
+    margin-right: 10px; /*アイコンとタイトルの間にスペース*/
+}
+
+.error-title {
+    color: #f44336; /*エラーの文字赤色 */
+    font-weight: bold;/*太字*/
+    font-size: 1.2em; /*フォントサイズを親要素のフォントサイズの 1.2 倍*/
+    margin-left: 10px; /* アイコンとの間隔 */
+}
+
+.timeout-message {
+    color: #424242; /* (セッションタイムアウトです)のメッセージの色 */
+    margin-left: 20px; /* タイトルとの間隔 */
+    font-size: 1em; /* 必要に応じて調整 */
+}
+
+
+.error-body p {
+   color: #424242; /* （ログインしてください）の文字濃い灰色 */
+    margin-bottom: 15px;/*段落の下側の外側に 5 ピクセルの余白*/
+    margin-top: -10px; /* セッションタイムアウトです、までの余白 */
+    padding-left: 6.6em; /* アイコンの幅に合わせて左側にパディングを追加 */
+}
+
+/*セッションタイムアウトエラーメッセージ表示時のみ、ログインボックスの位置を変更*/
+.error-container + .login-box { /*隣接セレクタ：.error-containerクラスを持つ要素の直後に隣接する .login-box クラスを持つ要素*/
+  margin-top: -5px; /* エラーメッセージの間隔に合わせて調整 */
+}

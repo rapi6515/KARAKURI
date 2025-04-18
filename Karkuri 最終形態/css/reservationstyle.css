@@ -1,0 +1,250 @@
+@charset "UTF-8";
+
+/* 全体のレイアウト調整 */
+.left-column {
+  /* カレンダー幅(450px) + テーブル幅(520px) + gap(20px) は大きいので見直し */
+  /* 例えば カレンダーとテーブルを縦に並べる場合 */
+   flex-basis: 520px; /* テーブル幅に合わせるなど */
+   /* display: flex; flex-direction: column; gap: 20px; */ /* 縦並びにする場合 */
+}
+
+.right-column {
+  /* 詳細(280px) + フォーム(700px?) をどう配置するか */
+  /* 例えば詳細/履歴とフォームを縦に */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-basis: 700px; /* フォーム幅に合わせるなど */
+}
+
+/* 既存の .container の調整 */
+.container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    /* margin: 30px; */ /* ← content-wrapper に移動した方が良いかも */
+    margin: 0 auto; /* 中央揃えにする場合 */
+    max-width: 1300px; /* 例: 全体の最大幅を指定 */
+}
+
+
+.content-wrapper {
+  /* 固定ヘッダーと重ならないように上部に余白をつける */
+  /* ヘッダーの実際の高さに合わせて調整してください (例: 60px) */
+  padding-top: 60px; 
+
+  /* ★★★ メインコンテンツの背景色を白に設定 ★★★ */
+  background-color: #ffffff; 
+
+  /* ★★★ メインコンテンツの基本的な文字色を黒系に設定 ★★★ */
+  color: #333333; 
+
+  /* 画面全体の高さを確保し、フッターが画面下に来るようにする (任意) */
+  min-height: calc(100vh - 60px); /* 画面高さ - ヘッダー高さ */
+
+  /* 必要に応じて、コンテンツ全体の左右や下の余白を設定 */
+  padding-left: 30px;  /* 例: 左余白 */
+  padding-right: 30px; /* 例: 右余白 */
+  padding-bottom: 30px; /* 例: 下余白 */
+}
+/* 詳細エリアのデザイン */
+#detail-container {
+	width: 200px;
+	border: 1px solid black;
+	padding: 15px;
+	background-color: #f9f9f9;
+}
+
+/* reservationstyle.css に追加 */
+.content-wrapper {
+  padding-top: 60px; /* 固定ヘッダーの高さ分 + 少し余白 (実際の高さに合わせて調整) */
+  /* 必要であれば左右の padding なども設定 */
+  /* padding-left: 30px; */
+  /* padding-right: 30px; */
+}
+
+/* 予約履歴エリアを詳細エリアの下に配置 */
+.history-container {
+	width: 280px;
+	max-height: 200px;
+	overflow-y: auto;
+	border: 1px solid #ccc;
+	padding: 10px;
+	background: #f9f9f9;
+	margin-top: 10px;
+	/* 詳細エリアとの間隔 */
+}
+
+/* 詳細エリアと予約履歴エリアを縦に並べる */
+.detail-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: flex-start;
+}
+
+/* 予約詳細エリアのスタイル */
+#detail-container {
+	width: 280px;
+	padding: 15px;
+	border: 1px solid black;
+	background-color: #f9f9f9;
+}
+
+/* カレンダーのサイズ */
+#calendar {
+	width: 450px;
+	height: 350px;
+	font-size: 12px;
+}
+
+.reserved {
+	background-color: #ffcccc;
+	/* 薄い赤 */
+	font-weight: bold;
+}
+
+.highlight-today {
+	background-color: #ffcc00 !important;
+	/* より濃い黄色 */
+	color: black !important;
+	font-weight: bold;
+	border-radius: 50%;
+	padding: 5px;
+	border: 2px solid #ff9900;
+	/* 濃いオレンジの枠線 */
+	box-shadow: 0px 0px 8px rgba(255, 140, 0, 0.8);
+	/* 光ってるようなエフェクト */
+}
+
+/* 予約表のスタイル */
+.schedule-table {
+	/* width: 400px; */ /* ← 元の指定 */
+    width: 520px; /* ← 例: 広げてみる */
+	height: 350px;
+	border-collapse: collapse;
+	/* overflow-y: auto; */ /* ← .schedule-container で指定するので不要かも */
+	/* border: 1px solid #ccc; */ /* ← .schedule-container で指定するので不要かも */
+	font-size: 12px;
+}
+
+.schedule-table th,
+.schedule-table td {
+	border: 1px solid #ccc;
+	text-align: center;
+	padding: 5px;
+}
+
+/* 表のヘッダー固定 & スクロール可能に */
+.schedule-container {
+	max-height: 350px;
+	overflow-y: auto;
+	border: 1px solid #ccc;
+}
+
+/* ヘッダーの固定 */
+.schedule-table thead {
+	position: sticky;
+	top: 0;
+	background-color: white;
+	z-index: 2;
+}
+
+/* 入力フォームのボックススタイル */
+.reservation-form {
+    width: 700px; /* 以前の600pxから700pxに広げる */
+    max-width: 100%; /* 画面幅に応じて最大限広がるように */
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin: 30px auto;
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+/* 日付・プラン・時間を横並びにする */
+.form-row-horizontal {
+    display: flex;
+    gap: 15px;
+}
+
+/* 各入力フィールドのスタイル */
+.form-row-horizontal .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ラベルのスタイル */
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* 入力欄 */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* コメント欄を幅いっぱいに */
+.form-comment {
+    margin-top: 15px;
+}
+
+.form-comment textarea {
+    width: 100%;
+    height: 120px;
+    resize: vertical;
+}
+
+/* ボタンを右寄せ */
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.form-buttons button {
+    padding: 8px 20px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.form-buttons button:hover {
+    background-color: #ddd;
+}
+
+/* カレンダーの日付セルやイベントのテキスト選択を無効化 */
+.fc-daygrid-day-frame, 
+.fc-event-title,
+.fc-event-main-frame { /* FullCalendarのバージョンによってクラス名が違う場合あり */
+    user-select: none; /* 標準 */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+}
+
+/* 時間割表のセルのテキスト選択を無効化 */
+.schedule-table td[data-time] {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer; /* クリック可能であることを示すカーソルにする (任意) */
+}
+
+/* カレンダーの日付自体もクリック可能に見せる */
+.fc-daygrid-day-number {
+    cursor: pointer; /* (任意) */
+}
